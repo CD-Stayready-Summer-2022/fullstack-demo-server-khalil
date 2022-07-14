@@ -27,8 +27,9 @@ public class EmployeeController {
     }
 
     @PostMapping
-    public Employee createEmployee(@RequestBody Employee employee) {
-        return employeeService.create(employee);
+    public ResponseEntity<Employee> createEmployee(@RequestBody Employee employee) {
+        employee = employeeService.create(employee);
+        return new ResponseEntity<>(employee, HttpStatus.CREATED);
     }
 
     @GetMapping("{id}")
